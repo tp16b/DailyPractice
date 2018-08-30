@@ -8,37 +8,41 @@
 #include <iostream>
 using namespace std;
 
-struct A{ 
+struct A
+{ 
 	int age;
 	string name;
 	A(string na, int a = 0)
 		:age(a), name(na) { }
 };
+
 template <class T>
 class AutoPtr
 { 
 public:
-		AutoPtr(T* ptr)	:_ptr(ptr) { }
+	AutoPtr(T* ptr)	:_ptr(ptr) { }
 
-		T& operator*()   { return *_ptr;}
-		T* operator->()		{return _ptr;}
+	T& operator*()   {return *_ptr;}
+	T* operator->()	 {return _ptr;}
 
-		//防止多次析构，ap2直接夺取管理权，ap1置空
-		//ap2( ap1)
-		AutoPtr(AutoPtr<T>& a) :_ptr(a._ptr)  {a._ptr = NULL;}
+	//防止多次析构，ap2直接夺取管理权，ap1置空
+	//ap2( ap1)
+	AutoPtr(AutoPtr<T>& a) :_ptr(a._ptr)  {a._ptr = NULL;}
 
-		//ap2 = ap1
-		AutoPtr<T>& operator=(AutoPtr<T>& a){ 
-			if(this != &a){ 
-				delete _ptr;
-				_ptr = a._ptr;
-				a._ptr = NULL;
-			} 
-			return *this;
-		}
-		~AutoPtr( )		{ delete _ptr;}
+	//ap2 = ap1
+	AutoPtr<T>& operator=(AutoPtr<T>& a)
+	{ 
+		if(this != &a){ 
+			delete _ptr;
+			_ptr = a._ptr;
+			a._ptr = NULL;
+		} 
+		return *this;
+	}
+
+	~AutoPtr()	{ delete _ptr;}
 protected:
-		T* _ptr;
+	T* _ptr;
 };
 int main( void)
 {	
