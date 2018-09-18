@@ -1,11 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <map>
-#include <typeinfo>
-#include <algorithm>
-
-using namespace std;
-
+#include "common.h"
+#include "mobile_semantic.h"
 //(****) lambda 表达式 一种匿名的函数, 追踪返回值类型定义返
 //回值。虽然危险，但是爱问
 //函数式编程 有些公司禁止使用->导致代码可读性，可维护性很差
@@ -89,7 +83,8 @@ int main( )
 	//test3( );
 //	test4( );
 	//test4_1( );
-	test5( );
+	//test5( );
+	test6( );
 	return 0;
 }
 //struct Pos{ 
