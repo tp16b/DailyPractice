@@ -1,6 +1,6 @@
 /* 途家：拿小石子比赛
  * 
- * 一堆石子n个，A、B两人轮流拿，A先拿 B后拿；没人至多拿k个
+ * 一堆石子n个，A、B两人轮流拿，A先拿 B后拿；每人至多拿k个
  * 至少拿一个；A、B同样聪明，最后拿到石子的获得胜利
  * 输入n，k  问：判断谁获得胜利
  *
@@ -28,8 +28,7 @@ void Win(int n, int k)
 	for(int i=k; i<= n; ++i){ 
 		int j =1;
 		for(; j<=k; ++j){ 
-			if(!isWin[i-j])
-				break;
+			if(!isWin[i-j]) break;
 		}
 		if(j > k)
 			isWin[i] = false;
@@ -43,8 +42,7 @@ int main( )
 	int t,n,k;
 	while( cin>>t){ 
 		for(int i=0; i<t; ++i){ 
-			cin>>n>>k;
-			Win(n, k);
+			cin>>n>>k;  Win(n, k);
 		}
 	}
 	return 0;
