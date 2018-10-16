@@ -1,5 +1,13 @@
+/* qunar笔试-象棋马走日
+ *
+ * 要求：
+ * 给定一个8X8的棋盘，和起点、终点位置坐标
+ * 问棋子以马走日的方式从起点走到终点最少走多少步？
+ *
+ * 解决：bfs ,遍历到终点，判断终点坐标所在遍历层数
+ *		 即为最少步数
+ * */
 #include <iostream>
-#include <string>
 #include <queue>
 
 using namespace std;
