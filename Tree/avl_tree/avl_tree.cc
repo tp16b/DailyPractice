@@ -12,6 +12,8 @@ void AVLTree::Insert(const KeyType& x)
 
 	AVLNode* cur=root_;
 	AVLNode* curFa = nullptr;	
+
+	//找到合适位置,插入结点
 	while(cur != nullptr){ 
 		if(cur->key_ == x) return;  //avl树中存在相同key值结点
 		if(cur->bf_ != 0)  {a = cur; fa = curFa; }
@@ -19,9 +21,9 @@ void AVLTree::Insert(const KeyType& x)
 		if(x < cur->key_) cur = cur->left_;
 		else cur = cur->right_;
 	}
-	//插入合适位置,插入结点
-	if(x < curFa->key_) curFa->left_ = s;
+	if(x < curFa->key_) curFa->left_ = s; //插入结点s
 	else curFa->right_ = s;
+
 	//插入结点后，修改相关结点平衡因子
 	cur = a;
 	while(cur != s){ 
@@ -33,9 +35,9 @@ void AVLTree::Insert(const KeyType& x)
 	}
 	if(abs(a->bf_) < 2) return;    //插入结点后，没有破坏平衡 
 	
-	if(a->bf_ == 2){               //调整最小不平衡树结构
-		if(a->left_->bf_ == 1) cur = LL_Rotate(a);
-		else cur = LR_Rotate(a);
+	if(a->bf_ == 2){               //插入导致不平衡,调整最小不平衡树结构
+		if(a->left_->bf_ == 1)  cur = LL_Rotate(a);
+		else  cur = LR_Rotate(a);
 	}else if(a->bf_ == -2){ 
 		if(a->right_->bf_ == -1) cur= RR_Rotate(a);
 		else cur= RL_Rotate(a);
